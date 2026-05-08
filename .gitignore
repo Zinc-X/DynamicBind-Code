@@ -1,0 +1,60 @@
+# Data and environments
+data
+/data
+conda_dynamic_bind/
+.venv/
+venv/
+env/
+
+# Model artifacts and outputs
+results/
+results_casf_ablation_study/
+results_lppdbbind_ablation_study/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.npz
+*.npy
+*.pkl
+*.joblib
+*.csv
+*.tsv
+*.parquet
+
+# Logs and runtime files
+logs/
+log/
+*.log
+nohup.out
+*.out
+*.err
+tmp/
+temp/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+!.env.example

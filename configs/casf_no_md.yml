@@ -1,0 +1,56 @@
+# Model Parameters
+dim_gnn: 128
+n_gnn: 3
+interaction_net: True
+no_rotor_penalty: False
+dropout_rate: 0.1
+vdw_N: 6.0
+max_vdw_interaction: 0.0356
+min_vdw_interaction: 0.0178
+lr: 0.0001 
+lr_decay: 1.0
+lr_decay_period: 200
+weight_decay: 0.0
+scaling: 1.0
+lattice_dim: 24
+grid_rotation: False
+
+
+# Training Paramters
+# nohup python train.py > ./log/pignet_MD_aug_300_mse025.out &
+ngpu: 0
+restart_file: ""
+save_dir: "results_reproduce/casf_no_md"
+data_path: "/ai/share/workspace/jhzhou/data/SiPobe_data"
+md_data_path: "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"
+
+use_generalset: True
+use_lp_pdbbind: false
+batch_size: 8
+num_workers: 4
+num_epochs: 300
+best_saving_epochs: 50
+
+loss_der1_ratio: 5.0 # 10
+loss_der2_ratio: 5.0 # 10
+min_loss_der2: 0
+
+dm_correction: True
+dev_vdw_radius: 0.2 # 0.2
+
+hbond_enhancement: True
+hbond_enhancement_max_ratio: 4.0
+hbond_enhancement_min_ratio: 0.5
+
+use_md_data: False
+use_md_rank_loss: False
+loss_md_ratio: 0.25
+
+
+
+
+
+
+
+
+
