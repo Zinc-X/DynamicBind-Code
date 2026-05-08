@@ -9,7 +9,7 @@ max_vdw_interaction: 0.0356
 min_vdw_interaction: 0.0178
 lr: 0.0001 
 lr_decay: 1.0
-lr_decay_period: 200
+lr_decay_period: 200  
 weight_decay: 0.0
 scaling: 1.0
 lattice_dim: 24
@@ -21,8 +21,8 @@ grid_rotation: False
 ngpu: 0
 restart_file: ""
 save_dir: "results_reproduce/lppdbbind_no_md"
-data_path: "/ai/share/workspace/jhzhou/data/SiPobe_data"
-md_data_path: "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"
+data_path: "./data" # "/ai/share/workspace/jhzhou/data/SiPobe_data"
+md_data_path: "./data" # "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"
 use_lp_pdbbind: True
 
 use_generalset: True

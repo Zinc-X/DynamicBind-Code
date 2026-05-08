@@ -21,8 +21,8 @@ swa_weight: null
 ngpu: 0
 restart_file: ''
 save_dir: results_reproduce/casf_md3000_frame50
-data_path: /ai/share/workspace/jhzhou/data/SiPobe_data
-md_data_path: /ai/share/workspace/sxia/smart_logic_data
+data_path: ./data # /ai/share/workspace/jhzhou/data/SiPobe_data
+md_data_path: ./data # /ai/share/workspace/sxia/smart_logic_data
 use_lp_pdbbind: false
 use_generalset: true
 batch_size: 8

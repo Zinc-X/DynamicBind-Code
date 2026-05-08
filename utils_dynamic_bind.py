@@ -186,8 +186,8 @@ class DynamicBindConfig:
     ngpu: int = 0
     restart_file: Optional[str] = None
     save_dir: str = MISSING
-    data_path: str = "/ai/share/workspace/jhzhou/data/SiPobe_data"
-    md_data_path: str = "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"
+    data_path: str = "./data"
+    md_data_path: str = "./data"
     md_first_n: Optional[int] = None
     # training data
     use_lp_pdbbind: bool = True

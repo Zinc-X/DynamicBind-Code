@@ -21,8 +21,8 @@ grid_rotation: False
 ngpu: 0
 restart_file: ""
 save_dir: "results_reproduce/casf_no_md"
-data_path: "/ai/share/workspace/jhzhou/data/SiPobe_data"
-md_data_path: "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"
+data_path: "./data" # "/ai/share/workspace/jhzhou/data/SiPobe_data"
+md_data_path: "./data" # "/ai/share/workspace/raphael/misato-dataset/data/MD/frames-20241009"     
 
 use_generalset: True
 use_lp_pdbbind: false
