@@ -1,6 +1,8 @@
 # Data and environments
 data
 /data
+PDBbind_gpcr/
+Test_gpcr/
 conda_dynamic_bind/
 .venv/
 venv/
