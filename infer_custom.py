@@ -13,6 +13,23 @@ from dataset import get_dataset_dataloader, load
 from models import DynamicBind
 from utils_dynamic_bind import DynamicBindConfig, dic_to_device, initialize_model
 
+# In training/inference pipeline, the model score is converted to pKd by
+# dividing by this factor (see also inference.py: pred_affinity = score / -1.36).
+SCORE_TO_PKD_DIVISOR = -1.36
+
+
+def resolve_row_key(row: Dict[str, str], idx: int) -> str:
+    """Return a stable key for a CSV row, generating one when missing."""
+    raw_key = (row.get("key") or "").strip()
+    if raw_key:
+        return raw_key
+    auto_key = row.get("_auto_key")
+    if auto_key:
+        return auto_key
+    auto_key = f"row_{idx}"
+    row["_auto_key"] = auto_key
+    return auto_key
+
 
 def read_pairs_csv(path: str) -> List[Dict[str, str]]:
     with open(path, "r", encoding="utf-8") as f:
@@ -30,13 +47,10 @@ def build_screening_list(rows: List[Dict[str, str]]) -> Tuple[List[Tuple[Mol, Mo
     screening_list = []
     status_map: Dict[str, str] = {}
 
-    for row in rows:
-        key = row["key"].strip()
+    for idx, row in enumerate(rows):
+        key = resolve_row_key(row, idx)
         ligand_path = row["ligand_path"].strip()
         target_path = row["target_path"].strip()
-
-        if key == "":
-            key = f"row_{len(status_map)}"
 
         if not os.path.exists(ligand_path):
             status_map[key] = f"fail: ligand_not_found ({ligand_path})"
@@ -117,11 +131,11 @@ def write_output(out_csv: str, rows: List[Dict[str, str]], pred_map: Dict[str, f
     with open(out_csv, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["key", "score", "pKd_est", "status"])
-        for row in rows:
-            key = row["key"].strip() or "unknown"
+        for idx, row in enumerate(rows):
+            key = resolve_row_key(row, idx)
             if key in pred_map:
                 score = pred_map[key]
-                writer.writerow([key, f"{score:.6f}", f"{(score / -1.36):.6f}", "ok"])
+                writer.writerow([key, f"{score:.6f}", f"{(score / SCORE_TO_PKD_DIVISOR):.6f}", "ok"])
             else:
                 writer.writerow([key, "", "", status_map.get(key, "fail: unknown")])
 
